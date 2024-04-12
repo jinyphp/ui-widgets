@@ -36,7 +36,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Jiny\\widgets\\JinyWidgetServiceProvider"
+                "Jiny\\Widgets\\JinyWidgetServiceProvider"
             ]
         }
     }

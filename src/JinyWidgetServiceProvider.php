@@ -53,6 +53,9 @@ class JinyWidgetServiceProvider extends ServiceProvider
             // Visual-Text Card : 왼쪽에 사진이 있고 오른쪽에 텍스트가 있는 유형
 
             // Picture-First Card : 상단에 그림이 있고 하단에 설명이 있는 유형
+
+            Livewire::component('WidgetCarousel',
+                \Jiny\Widgets\Http\Livewire\WidgetCarousel::class);
         });
 
     }

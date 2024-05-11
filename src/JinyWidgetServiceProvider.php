@@ -26,14 +26,33 @@ class JinyWidgetServiceProvider extends ServiceProvider
         ]);
 
 
+
+
+
     }
 
     public function register()
     {
         /* 라이브와이어 컴포넌트 등록 */
         $this->app->afterResolving(BladeCompiler::class, function () {
-       
-            
+            Livewire::component('WidgetComponent',
+                \Jiny\Widgets\Http\Livewire\WidgetComponent::class);
+
+            Livewire::component('WidgetCard',
+                \Jiny\Widgets\Http\Livewire\WidgetCard::class);
+
+            Livewire::component('WidgetHero',
+                \Jiny\Widgets\Http\Livewire\WidgetHero::class);
+
+            Livewire::component('WidgetTable',
+                \Jiny\Widgets\Http\Livewire\WidgetTable::class);
+
+            Livewire::component('WidgetList-ourteams',
+                \Jiny\Widgets\Http\Livewire\WidgetOurTeam::class);
+
+            // Visual-Text Card : 왼쪽에 사진이 있고 오른쪽에 텍스트가 있는 유형
+
+            // Picture-First Card : 상단에 그림이 있고 하단에 설명이 있는 유형
         });
 
     }

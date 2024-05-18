@@ -31,6 +31,8 @@ class WidgetHero extends Component
     public $forms = [];
     public $edit_id;
 
+    use \Jiny\Widgets\Http\Trait\DesignMode;
+
     public function mount()
     {
         $this->dataload();

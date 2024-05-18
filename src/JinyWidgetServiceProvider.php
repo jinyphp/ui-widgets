@@ -26,7 +26,10 @@ class JinyWidgetServiceProvider extends ServiceProvider
         ]);
 
 
-
+        Blade::directive('widget', function ($args) {
+            $expression = Blade::stripParentheses($args);
+            return "<?php echo \$__env->make({$expression}, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>";
+        });
 
 
     }
@@ -56,6 +59,9 @@ class JinyWidgetServiceProvider extends ServiceProvider
 
             Livewire::component('WidgetCarousel',
                 \Jiny\Widgets\Http\Livewire\WidgetCarousel::class);
+
+            Livewire::component('HotKeyEvent',
+                \Jiny\Widgets\Http\Livewire\HotKeyEvent::class);
         });
 
     }

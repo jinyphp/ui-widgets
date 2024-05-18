@@ -8,8 +8,14 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-class WidgetOurTeam extends WidgetTable
+class HotKeyEvent extends Component
 {
     use \Jiny\Widgets\Http\Trait\DesignMode;
+
+    public function render()
+    {
+        $viewFile = 'jiny-widgets::hotkey_event';
+        return view($viewFile);
+    }
 
 }

@@ -38,30 +38,76 @@ class JinyWidgetServiceProvider extends ServiceProvider
     {
         /* 라이브와이어 컴포넌트 등록 */
         $this->app->afterResolving(BladeCompiler::class, function () {
-            Livewire::component('WidgetComponent',
-                \Jiny\Widgets\Http\Livewire\WidgetComponent::class);
+            Livewire::component('HotKeyEvent',
+                \Jiny\Widgets\Http\Livewire\HotKeyEvent::class);
 
-            Livewire::component('WidgetCard',
-                \Jiny\Widgets\Http\Livewire\WidgetCard::class);
-
+            ## Hero
             Livewire::component('WidgetHero',
                 \Jiny\Widgets\Http\Livewire\WidgetHero::class);
 
-            Livewire::component('WidgetTable',
-                \Jiny\Widgets\Http\Livewire\WidgetTable::class);
+            Livewire::component('WidgetHero-Heading',
+                \Jiny\Widgets\Http\Livewire\WidgetHeroHeading::class);
 
-            Livewire::component('WidgetList-ourteams',
-                \Jiny\Widgets\Http\Livewire\WidgetOurTeam::class);
+            Livewire::component('WidgetHero-Buttons',
+                \Jiny\Widgets\Http\Livewire\WidgetHeroButtons::class);
 
-            // Visual-Text Card : 왼쪽에 사진이 있고 오른쪽에 텍스트가 있는 유형
 
-            // Picture-First Card : 상단에 그림이 있고 하단에 설명이 있는 유형
+            ## Cards
+            Livewire::component('WidgetCard',
+                \Jiny\Widgets\Http\Livewire\WidgetCard::class);
 
+            Livewire::component('WidgetCard-Left',
+                \Jiny\Widgets\Http\Livewire\WidgetCardLeft::class);
+
+            Livewire::component('WidgetCard-Right',
+                \Jiny\Widgets\Http\Livewire\WidgetCardRight::class);
+
+
+            ## Grids
+            Livewire::component('WidgetGrid',
+                \Jiny\Widgets\Http\Livewire\WidgetGrid::class);
+
+            Livewire::component('WidgetGrid-Avatas',
+                \Jiny\Widgets\Http\Livewire\WidgetGridAvatas::class);
+
+
+            ## Carousel
             Livewire::component('WidgetCarousel',
                 \Jiny\Widgets\Http\Livewire\WidgetCarousel::class);
 
-            Livewire::component('HotKeyEvent',
-                \Jiny\Widgets\Http\Livewire\HotKeyEvent::class);
+
+            ## Table
+            Livewire::component('WidgetTable',
+                \Jiny\Widgets\Http\Livewire\WidgetTable::class);
+
+            ## List
+            Livewire::component('WidgetList',
+                \Jiny\Widgets\Http\Livewire\WidgetList::class);
+
+
+
+
+
+
+
+            // Livewire::component('WidgetList-ourteams',
+            //     \Jiny\Widgets\Http\Livewire\WidgetOurTeam::class);
+
+
+            // Livewire::component('WidgetComponent',
+            //     \Jiny\Widgets\Http\Livewire\WidgetComponent::class);
+
+
+
+
+
+
+
+
+
+
+
+
         });
 
     }

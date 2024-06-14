@@ -11,6 +11,17 @@
                 {!! $rows['description'] !!}
                 @endif
             </p>
+
+            @if(isset($rows['link']))
+            <a class="btn btn-primary btn-lg" href="{{$rows['link']}}">
+                @if(isset($rows['link_title']))
+                {!! $rows['link_title'] !!}
+                @else
+                Click
+                @endif
+            </a>
+            @endif
+
         </div>
     </div>
 </div>

@@ -8,7 +8,7 @@ use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
 use Jiny\Widgets\Http\Livewire\WidgetJson;
-class WidgetHero extends WidgetJson
+class WidgetGrid extends WidgetJson
 {
     public function mount()
     {
@@ -34,7 +34,7 @@ class WidgetHero extends WidgetJson
 
     private function viewListFile()
     {
-        $viewFile = 'jiny-widgets::widget.view.list';
+        $viewFile = 'jiny-widgets::grids.view.list';
 
         if(isset($this->widget['view']['list'])) {
             $viewFile = $this->widget['view']['list'];
@@ -46,7 +46,7 @@ class WidgetHero extends WidgetJson
 
     private function viewFormFile()
     {
-        $this->viewForm = "jiny-widgets::widgets.view_form";
+        $this->viewForm = "jiny-widgets::grids.view_form";
 
         if(isset($this->widget['view']['form'])) {
             $this->viewForm = $this->widget['view']['form'];

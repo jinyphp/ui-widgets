@@ -1,3 +1,4 @@
+{{-- 왼쪽에 사진이 있고 오른쪽에 텍스트가 있는 유형 --}}
 <div class="row gx-5 align-items-center">
     <div class="col-lg-6">
         @if(isset($rows['image']))

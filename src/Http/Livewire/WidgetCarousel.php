@@ -7,52 +7,30 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-use Jiny\Widgets\Http\Livewire\WidgetJson;
-class WidgetCarousel extends WidgetJson
+use Jiny\Widgets\Http\Livewire\WidgetList;
+class WidgetCarousel extends WidgetList
 {
     public function mount()
     {
         parent::mount();
-
-        $this->viewFormFile();
-        $this->viewListFile();
     }
 
-
-    public function render()
+    protected function viewListFile()
     {
-        if(!$this->filename) {
-            return <<<EOD
-            <div>Widget 데이터 파일명이 없습니다.</div>
-            EOD;
+        if(!$this->viewList) {
+            $this->viewList = 'jiny-widgets::carousel.basic.list';
         }
-
-        // 기본값
-        $viewFile = 'jiny-widgets::widgets.view';
-        return view($viewFile);
     }
 
-    private function viewListFile()
+    protected function viewFormFile()
     {
-        $viewFile = 'jiny-widgets::carousel.basic.main';
-
-        if(isset($this->widget['view']['list'])) {
-            $viewFile = $this->widget['view']['list'];
+        if(!$this->viewForm) {
+            $this->viewForm = "jiny-widgets::carousel.basic.form";
         }
-
-        $this->viewList = $viewFile;
-        return $viewFile;
     }
 
-    private function viewFormFile()
-    {
-        $this->viewForm = "jiny-widgets::carousel.basic.form";
 
-        if(isset($this->widget['view']['form'])) {
-            $this->viewForm = $this->widget['view']['form'];
-        }
 
-        return $this->viewForm;
-    }
+
 
 }

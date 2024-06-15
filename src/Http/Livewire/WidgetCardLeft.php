@@ -7,52 +7,29 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-use Jiny\Widgets\Http\Livewire\WidgetJson;
-class WidgetCardLeft extends WidgetJson
+use Jiny\Widgets\Http\Livewire\WidgetHero;
+class WidgetCardLeft extends WidgetHero
 {
     public function mount()
     {
         parent::mount();
-
-        $this->viewFormFile();
-        $this->viewListFile();
     }
 
-
-    public function render()
+    protected function viewListFile()
     {
-        if(!$this->filename) {
-            return <<<EOD
-            <div>Widget 데이터 파일명이 없습니다.</div>
-            EOD;
+        if(!$this->viewList) {
+            $this->viewList = 'jiny-widgets::cards.left.main';
         }
-
-        // 기본값
-        $viewFile = 'jiny-widgets::widgets.view';
-        return view($viewFile);
     }
 
-    private function viewListFile()
+    protected function viewFormFile()
     {
-        $viewFile = 'jiny-widgets::cards.left.main';
-
-        if(isset($this->widget['view']['list'])) {
-            $viewFile = $this->widget['view']['list'];
+        if(!$this->viewForm) {
+            $this->viewForm = "jiny-widgets::cards.left.form";
         }
-
-        $this->viewList = $viewFile;
-        return $viewFile;
     }
 
-    private function viewFormFile()
-    {
-        $this->viewForm = "jiny-widgets::cards.left.form";
 
-        if(isset($this->widget['view']['form'])) {
-            $this->viewForm = $this->widget['view']['form'];
-        }
 
-        return $this->viewForm;
-    }
 
 }

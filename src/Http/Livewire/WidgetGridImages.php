@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-use Jiny\Widgets\Http\Livewire\WidgetHero;
-class WidgetHeroHeading extends WidgetHero
+use Jiny\Widgets\Http\Livewire\WidgetList;
+class WidgetGridImages extends WidgetList
 {
     public function mount()
     {
@@ -18,16 +18,15 @@ class WidgetHeroHeading extends WidgetHero
     protected function viewListFile()
     {
         if(!$this->viewList) {
-            $this->viewList = 'jiny-widgets::hero.heading.main';
+            $this->viewList = 'jiny-widgets::grids.avatas.list';
         }
     }
 
     protected function viewFormFile()
     {
         if(!$this->viewForm) {
-            $this->viewForm = "jiny-widgets::hero.heading.form";
+            $this->viewForm = "jiny-widgets::grids.avatas.form";
         }
     }
-
 
 }

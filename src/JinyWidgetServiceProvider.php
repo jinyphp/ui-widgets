@@ -70,6 +70,9 @@ class JinyWidgetServiceProvider extends ServiceProvider
             Livewire::component('WidgetGrid-Avatas',
                 \Jiny\Widgets\Http\Livewire\WidgetGridAvatas::class);
 
+            Livewire::component('WidgetGrid-Images',
+                \Jiny\Widgets\Http\Livewire\WidgetGridImages::class);
+
 
             ## Carousel
             Livewire::component('WidgetCarousel',
@@ -83,6 +86,9 @@ class JinyWidgetServiceProvider extends ServiceProvider
             ## List
             Livewire::component('WidgetList',
                 \Jiny\Widgets\Http\Livewire\WidgetList::class);
+
+            Livewire::component('WidgetList-Faq',
+                \Jiny\Widgets\Http\Livewire\WidgetListFaq::class);
 
 
 

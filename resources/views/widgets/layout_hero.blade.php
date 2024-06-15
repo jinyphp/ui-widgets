@@ -1,10 +1,11 @@
 <div style="position: relative;">
     {{-- 위젯 설정버튼 --}}
-    <div style="position: absolute;top:4px;right:4px;z-index:50;">
-        <span class="text-primary" wire:click="create">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+    @if($design)
+    <div style="position: absolute;top:4px;right:4px;">
+        <span class="text-primary" wire:click="modify">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
             </svg>
         </span>
 
@@ -15,6 +16,7 @@
             </svg>
         </span>
     </div>
+    @endif
 
     {{-- 목록화면 --}}
     @includeIf($viewList)
@@ -24,32 +26,20 @@
     @if ($popupForm)
     <x-wire-dialog-modal wire:model="popupForm" maxWidth="3xl">
         <x-slot name="title">
-            @if ($edit_id)
             {{ __('수정') }}
-            @else
-            {{ __('신규 입력') }}
-            @endif
         </x-slot>
 
         <x-slot name="content">
             @if($setup)
-                @includeIf("jiny-widgets::widgets.form")
+                @includeIf("jiny-widgets::widgets.layout_form")
             @else
                 @includeIf($viewForm)
             @endif
         </x-slot>
 
         <x-slot name="footer">
-            @if ($edit_id)
-            {{-- 수정폼--}}
             <x-flex-between>
-                <div> {{-- 2단계 삭제 --}}
-                    @if($popupDelete)
-                    <span class="text-red-600">정말로 삭제를 진행할까요?</span>
-                    <button type="button" class="btn btn-danger" wire:click="deleteConfirm">삭제</button>
-                    @else
-                    <button type="button" class="btn btn-warning" wire:click="delete">삭제</button>
-                    @endif
+                <div>
                 </div>
                 <div> {{-- right --}}
                     <button type="button" class="btn btn-secondary"
@@ -58,19 +48,6 @@
                         wire:click="update">수정</button>
                 </div>
             </x-flex-between>
-
-            @else
-            {{-- 생성폼 --}}
-            <div class="flex justify-between">
-                <div></div>
-                <div class="text-right">
-                    <button type="button" class="btn btn-secondary"
-                        wire:click="cancel">취소</button>
-                    <button type="button" class="btn btn-primary"
-                        wire:click="store">저장</button>
-                </div>
-            </div>
-            @endif
         </x-slot>
     </x-wire-dialog-modal>
     @endif

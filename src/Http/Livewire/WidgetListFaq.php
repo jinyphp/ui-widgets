@@ -1,15 +1,17 @@
 <?php
 namespace Jiny\Widgets\Http\Livewire;
 
+use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-use Jiny\Widgets\Http\Livewire\WidgetHero;
-class WidgetHeroHeading extends WidgetHero
+use Jiny\Widgets\Http\Livewire\WidgetList;
+class WidgetListFaq extends WidgetList
 {
+
     public function mount()
     {
         parent::mount();
@@ -18,14 +20,14 @@ class WidgetHeroHeading extends WidgetHero
     protected function viewListFile()
     {
         if(!$this->viewList) {
-            $this->viewList = 'jiny-widgets::hero.heading.main';
+            $this->viewList = 'jiny-widgets::list.faq.list';
         }
     }
 
     protected function viewFormFile()
     {
         if(!$this->viewForm) {
-            $this->viewForm = "jiny-widgets::hero.heading.form";
+            $this->viewForm = "jiny-widgets::list.faq.form";
         }
     }
 

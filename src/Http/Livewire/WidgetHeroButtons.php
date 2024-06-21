@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-use Jiny\Widgets\Http\Livewire\WidgetHero;
-class WidgetHeroButtons extends WidgetHero
+use Jiny\Widgets\Http\Livewire\WidgetList;
+class WidgetHeroButtons extends WidgetList
 {
     public function mount()
     {
@@ -18,7 +18,7 @@ class WidgetHeroButtons extends WidgetHero
     protected function viewListFile()
     {
         if(!$this->viewList) {
-            $this->viewList = 'jiny-widgets::hero.buttons.main';
+            $this->viewList = 'jiny-widgets::hero.buttons.list';
         }
     }
 

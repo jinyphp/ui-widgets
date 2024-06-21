@@ -65,7 +65,7 @@ class WidgetHero extends Component
     protected function viewListFile()
     {
         if(!$this->viewList) {
-            $this->viewList = 'jiny-widgets::hero.basic.list';
+            $this->viewList = 'jiny-widgets::hero.basic.main';
         }
     }
 

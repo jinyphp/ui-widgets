@@ -15,23 +15,26 @@
 
 
         @foreach ($rows as $i => $item)
-
-            <a class="btn btn-primary btn-lg" wire:click="edit({{$i}})">
+            @if($design)
+            <a class="btn btn-{{$item['style']}}" wire:click="edit({{$i}})">
                 @if(isset($item['link_title']))
                     {!! $item['link_title'] !!}
                 @else
                     ... {{$i}}
                 @endif
             </a>
+            @else
+            <a class="btn btn-{{$item['style']}}" href="{{$item['link']}}">
+                @if(isset($item['link_title']))
+                {!! $item['link_title'] !!}
+                @else
+                ...
+                @endif
+            </a>
+            @endif
 
             {{-- @if(isset($item['link']))
-                <a class="btn btn-primary btn-lg" href="{{$item['link']}}">
-                    @if(isset($item['link_title']))
-                    {!! $item['link_title'] !!}
-                    @else
-                    ...
-                    @endif
-                </a>
+
             @else
                 <button class="btn btn-primary btn-lg" >
                     @if(isset($item['link_title']))

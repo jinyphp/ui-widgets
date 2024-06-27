@@ -13,8 +13,14 @@
             </p>
         </div>
 
-
+        <div class="text-center my-5">
         @foreach ($rows as $i => $item)
+            @if(!isset($item['style']))
+                @php
+                $item['style'] = "primary";
+                @endphp
+            @endif
+
             @if($design)
             <a class="btn btn-{{$item['style']}}" wire:click="edit({{$i}})">
                 @if(isset($item['link_title']))
@@ -24,6 +30,7 @@
                 @endif
             </a>
             @else
+
             <a class="btn btn-{{$item['style']}}" href="{{$item['link']}}">
                 @if(isset($item['link_title']))
                 {!! $item['link_title'] !!}
@@ -45,6 +52,7 @@
                 </button>
             @endif --}}
         @endforeach
+        </div>
 
 
     </div>

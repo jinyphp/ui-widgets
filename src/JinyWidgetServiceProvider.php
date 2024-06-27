@@ -41,6 +41,10 @@ class JinyWidgetServiceProvider extends ServiceProvider
             Livewire::component('HotKeyEvent',
                 \Jiny\Widgets\Http\Livewire\HotKeyEvent::class);
 
+            ## Code
+            Livewire::component('WidgetCode-Html',
+                \Jiny\Widgets\Http\Livewire\WidgetCode::class);
+
             ## Hero
             Livewire::component('WidgetHero',
                 \Jiny\Widgets\Http\Livewire\WidgetHero::class);

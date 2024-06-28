@@ -45,6 +45,9 @@ class JinyWidgetServiceProvider extends ServiceProvider
             Livewire::component('WidgetCode-Html',
                 \Jiny\Widgets\Http\Livewire\WidgetCode::class);
 
+            Livewire::component('WidgetCode-Preview',
+                \Jiny\Widgets\Http\Livewire\WidgetCodePreview::class);
+
             ## Hero
             Livewire::component('WidgetHero',
                 \Jiny\Widgets\Http\Livewire\WidgetHero::class);

@@ -3,7 +3,6 @@ $uid = uniqid(mt_rand(), true);
 // 소수점(.)을 빈 문자열로 대체하여 제거
 $uid = str_replace('.', '', $uid);
 @endphp
-
 <x-card>
     <x-card-header>
         <div class="row align-items-center py-2 px-3">
@@ -66,13 +65,6 @@ $uid = str_replace('.', '', $uid);
                         id="pills-{{$uid}}-code"
                         role="tabpanel"
                         aria-labelledby="pills-{{$uid}}-code-tab">
-@push('css')
-    @once
-    <!-- Prism CSS 파일 포함 -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet">
-    @endonce
-@endpush
-
 @if(isset($rows['code']))
 <pre>
     <code class="language-markup">
@@ -81,12 +73,6 @@ $uid = str_replace('.', '', $uid);
 </pre>
 @endif
 
-@push('script')
-    @once
-    <!-- Prism JS 파일 포함 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
-    @endonce
-@endpush
 
                     </div>
                 </div>

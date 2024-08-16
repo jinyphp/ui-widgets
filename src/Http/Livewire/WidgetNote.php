@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-class WidgetCodePreview extends Component
+class WidgetNote extends Component
 {
     use WithFileUploads;
     use \Jiny\WireTable\Http\Trait\Upload;
@@ -65,7 +65,7 @@ class WidgetCodePreview extends Component
     protected function viewListFile()
     {
         if (!$this->viewList) {
-            $this->viewList = 'jiny-widgets::code.preview.main';
+            $this->viewList = 'jiny-widgets::code.preview.note';
         }
     }
 

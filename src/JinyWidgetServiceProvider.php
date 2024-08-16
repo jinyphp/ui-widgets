@@ -14,15 +14,15 @@ class JinyWidgetServiceProvider extends ServiceProvider
     public function boot()
     {
         // 모듈: 라우트 설정
-        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/../resources/views', $this->package);
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', $this->package);
 
         // 데이터베이스
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         // 설정파일 복사
         $this->publishes([
-            __DIR__.'/../config/setting.php' => config_path('jiny/widgets/setting.php'),
+            __DIR__ . '/../config/setting.php' => config_path('jiny/widgets/setting.php'),
         ]);
 
 
@@ -38,77 +38,147 @@ class JinyWidgetServiceProvider extends ServiceProvider
     {
         /* 라이브와이어 컴포넌트 등록 */
         $this->app->afterResolving(BladeCompiler::class, function () {
-            Livewire::component('HotKeyEvent',
-                \Jiny\Widgets\Http\Livewire\HotKeyEvent::class);
+            Livewire::component(
+                'HotKeyEvent',
+                \Jiny\Widgets\Http\Livewire\HotKeyEvent::class
+            );
 
             ## Code
-            Livewire::component('WidgetCode-Html',
-                \Jiny\Widgets\Http\Livewire\WidgetCode::class);
+            Livewire::component(
+                'WidgetCode-Html',
+                \Jiny\Widgets\Http\Livewire\WidgetCode::class
+            );
 
-            Livewire::component('WidgetCode-Preview',
-                \Jiny\Widgets\Http\Livewire\WidgetCodePreview::class);
+            Livewire::component(
+                'WidgetCode-Preview',
+                \Jiny\Widgets\Http\Livewire\WidgetCodePreview::class
+            );
+            Livewire::component(
+                'WidgetCode-Component',
+                \Jiny\Widgets\Http\Livewire\WidgetComponentPreview::class
+            );
+
+            Livewire::component(
+                'WidgetOnlyCode',
+                \Jiny\Widgets\Http\Livewire\WidgetOnlyCodePreview::class
+            );
+
+            Livewire::component(
+                'WidgetText',
+                \Jiny\Widgets\Http\Livewire\WidgetText::class
+            );
 
             ## Hero
-            Livewire::component('WidgetHero',
-                \Jiny\Widgets\Http\Livewire\WidgetHero::class);
+            Livewire::component(
+                'WidgetHero',
+                \Jiny\Widgets\Http\Livewire\WidgetHero::class
+            );
 
-            Livewire::component('WidgetHero-Heading',
-                \Jiny\Widgets\Http\Livewire\WidgetHeroHeading::class);
+            Livewire::component(
+                'WidgetHero-Heading',
+                \Jiny\Widgets\Http\Livewire\WidgetHeroHeading::class
+            );
 
-            Livewire::component('WidgetHero-Buttons',
-                \Jiny\Widgets\Http\Livewire\WidgetHeroButtons::class);
+            Livewire::component(
+                'WidgetHero-Buttons',
+                \Jiny\Widgets\Http\Livewire\WidgetHeroButtons::class
+            );
 
 
             ## Cards
-            Livewire::component('WidgetCard',
-                \Jiny\Widgets\Http\Livewire\WidgetCard::class);
+            Livewire::component(
+                'WidgetCard',
+                \Jiny\Widgets\Http\Livewire\WidgetCard::class
+            );
 
-            Livewire::component('WidgetCard-Left',
-                \Jiny\Widgets\Http\Livewire\WidgetCardLeft::class);
+            Livewire::component(
+                'WidgetCard-Left',
+                \Jiny\Widgets\Http\Livewire\WidgetCardLeft::class
+            );
 
-            Livewire::component('WidgetCard-Right',
-                \Jiny\Widgets\Http\Livewire\WidgetCardRight::class);
+            Livewire::component(
+                'WidgetCard-Right',
+                \Jiny\Widgets\Http\Livewire\WidgetCardRight::class
+            );
 
 
             ## Grids
-            Livewire::component('WidgetGrid',
-                \Jiny\Widgets\Http\Livewire\WidgetGrid::class);
+            Livewire::component(
+                'WidgetGrid',
+                \Jiny\Widgets\Http\Livewire\WidgetGrid::class
+            );
 
-            Livewire::component('WidgetGrid-Avatas',
-                \Jiny\Widgets\Http\Livewire\WidgetGridAvatas::class);
+            Livewire::component(
+                'WidgetGrid-Avatas',
+                \Jiny\Widgets\Http\Livewire\WidgetGridAvatas::class
+            );
 
-            Livewire::component('WidgetGrid-Images',
-                \Jiny\Widgets\Http\Livewire\WidgetGridImages::class);
+            Livewire::component(
+                'WidgetGrid-Images',
+                \Jiny\Widgets\Http\Livewire\WidgetGridImages::class
+            );
 
 
             ## Carousel
-            Livewire::component('WidgetCarousel',
-                \Jiny\Widgets\Http\Livewire\WidgetCarousel::class);
+            Livewire::component(
+                'WidgetCarousel',
+                \Jiny\Widgets\Http\Livewire\WidgetCarousel::class
+            );
 
 
             ## Table
-            Livewire::component('WidgetTable',
-                \Jiny\Widgets\Http\Livewire\WidgetTable::class);
+            Livewire::component(
+                'WidgetTable',
+                \Jiny\Widgets\Http\Livewire\WidgetTable::class
+            );
+
+            Livewire::component(
+                'WidgetTableStyle1',
+                \Jiny\Widgets\Http\Livewire\WidgetTableStyle1::class
+            );
+            Livewire::component(
+                'WidgetTableStyle2',
+                \Jiny\Widgets\Http\Livewire\WidgetTableStyle2::class
+            );
+            Livewire::component(
+                'WidgetTableStyle3',
+                \Jiny\Widgets\Http\Livewire\WidgetTableStyle3::class
+            );
+
+
+
+            ## Title
+            Livewire::component(
+                'WidgetTitle',
+                \Jiny\Widgets\Http\Livewire\WidgetTitle::class
+            );
 
             ## List
-            Livewire::component('WidgetList',
-                \Jiny\Widgets\Http\Livewire\WidgetList::class);
+            Livewire::component(
+                'WidgetList',
+                \Jiny\Widgets\Http\Livewire\WidgetList::class
+            );
 
-            Livewire::component('WidgetList-Faq',
-                \Jiny\Widgets\Http\Livewire\WidgetListFaq::class);
+            Livewire::component(
+                'WidgetList-Faq',
+                \Jiny\Widgets\Http\Livewire\WidgetListFaq::class
+            );
 
-
+            Livewire::component(
+                'WidgetNote',
+                \Jiny\Widgets\Http\Livewire\WidgetNote::class
+            );
 
 
 
 
 
             // Livewire::component('WidgetList-ourteams',
-            //     \Jiny\Widgets\Http\Livewire\WidgetOurTeam::class);
+// \Jiny\Widgets\Http\Livewire\WidgetOurTeam::class);
 
 
             // Livewire::component('WidgetComponent',
-            //     \Jiny\Widgets\Http\Livewire\WidgetComponent::class);
+// \Jiny\Widgets\Http\Livewire\WidgetComponent::class);
 
 
 

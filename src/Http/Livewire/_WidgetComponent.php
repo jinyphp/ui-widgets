@@ -13,7 +13,7 @@ class WidgetComponent extends Component
     use WithFileUploads;
     use \Jiny\WireTable\Http\Trait\Upload;
 
-    public $widget=[]; // 위젯정보
+    public $widget = []; // 위젯정보
     public $filename;
     public $upload_path;
 
@@ -42,23 +42,23 @@ class WidgetComponent extends Component
         $this->viewListFile();
 
         // 데이터 파일명과 동일한 구조의 url 경로로 임시설정
-        $this->upload_path = DIRECTORY_SEPARATOR.str_replace(".", DIRECTORY_SEPARATOR, $this->filename);
+        $this->upload_path = DIRECTORY_SEPARATOR . str_replace(".", DIRECTORY_SEPARATOR, $this->filename);
     }
 
     private function dataload()
     {
-        $conf = str_replace("/",".",$this->filename);
+        $conf = str_replace("/", ".", $this->filename);
         //$this->widget = config($conf);
         $widget = config($conf);
-        if($widget) {
-            foreach($widget as $key => $item) {
+        if ($widget) {
+            foreach ($widget as $key => $item) {
                 $this->widget[$key] = $item;
             }
         }
 
         // items 데이터 읽기
-        if($this->widget) {
-            if(isset($this->widget['items'])) {
+        if ($this->widget) {
+            if (isset($this->widget['items'])) {
                 $this->rows = $this->widget['items'];
             }
         }
@@ -66,7 +66,7 @@ class WidgetComponent extends Component
 
     public function render()
     {
-        if(!$this->filename) {
+        if (!$this->filename) {
             return <<<EOD
             <div>Widget 데이터 파일명이 없습니다.</div>
             EOD;
@@ -81,7 +81,7 @@ class WidgetComponent extends Component
     {
         $viewFile = 'jiny-widgets::our_teams.list';
 
-        if(isset($this->widget['view']['list'])) {
+        if (isset($this->widget['view']['list'])) {
             $viewFile = $this->widget['view']['list'];
         }
 
@@ -96,7 +96,7 @@ class WidgetComponent extends Component
     {
         $this->viewForm = "jiny-widgets::our_teams.form";
 
-        if(isset($this->widget['view']['form'])) {
+        if (isset($this->widget['view']['form'])) {
             $this->viewForm = $this->widget['view']['form'];
         }
 
@@ -104,11 +104,14 @@ class WidgetComponent extends Component
     }
 
     protected $listeners = [
-        'create','popupFormCreate',
-        'edit','popupEdit','popupCreate'
+        'create',
+        'popupFormCreate',
+        'edit',
+        'popupEdit',
+        'popupCreate'
     ];
 
-    public function create($value=null)
+    public function create($value = null)
     {
         $this->popupForm = true;
         $this->edit_id = null;
@@ -120,7 +123,7 @@ class WidgetComponent extends Component
     public function store()
     {
         // 0 이상인 경우, 입력한 데이터값이 있다는 의미
-        if(count($this->forms)>0) {
+        if (count($this->forms) > 0) {
             // 2. 시간정보 생성
             $this->forms['created_at'] = date("Y-m-d H:i:s");
             $this->forms['updated_at'] = date("Y-m-d H:i:s");
@@ -128,7 +131,7 @@ class WidgetComponent extends Component
             // 3. 파일 업로드 체크 Trait
             $this->fileUpload($this->forms, $this->upload_path);
 
-            $i = count($this->rows)+1;
+            $i = count($this->rows) + 1;
             $this->rows[$i] = $this->forms;
         }
 
@@ -183,7 +186,7 @@ class WidgetComponent extends Component
     }
 
 
-    public function delete($id=null)
+    public function delete($id = null)
     {
         $this->popupDelete = true;
     }
@@ -221,10 +224,10 @@ class WidgetComponent extends Component
         $path = storage_path('app');
         $type_name = ["image", "img", "images", "upload"];
 
-        foreach($form as $key => $item) {
-            if(in_array($key, $type_name)) {
-                $filepath = $path."/".$item;
-                if(file_exists($filepath)) {
+        foreach ($form as $key => $item) {
+            if (in_array($key, $type_name)) {
+                $filepath = $path . "/" . $item;
+                if (file_exists($filepath)) {
                     unlink($filepath);
                 }
             }
@@ -242,7 +245,7 @@ class WidgetComponent extends Component
     {
         // 저장
         $str = $this->convToPHP($rows);
-$file = <<<EOD
+        $file = <<<EOD
 <?php
 return $str;
 EOD;
@@ -251,32 +254,36 @@ EOD;
 
         // 설정 디렉터리 검사
         $info = pathinfo($path);
-        if(!is_dir($info['dirname'])) mkdir($info['dirname'],0755, true);
+        if (!is_dir($info['dirname']))
+            mkdir($info['dirname'], 0755, true);
 
         file_put_contents($path, $file);
     }
 
-    public function convToPHP($form, $level=1)
+    public function convToPHP($form, $level = 1)
     {
         $str = "[\n"; //초기화
         $lastKey = array_key_last($form);
 
-        foreach($form as $key => $value) {
-            for($i=0;$i<$level;$i++) $str .= "\t";
+        foreach ($form as $key => $value) {
+            for ($i = 0; $i < $level; $i++)
+                $str .= "\t";
 
-            if(is_array($value)) {
-                $str .= "'$key'=>".''.$this->convToPHP($value,$level+1).'';
+            if (is_array($value)) {
+                $str .= "'$key'=>" . '' . $this->convToPHP($value, $level + 1) . '';
             } else {
-                $str .= "'$key'=>".'"'.addslashes($value).'"';
+                $str .= "'$key'=>" . '"' . addslashes($value) . '"';
             }
 
-            if($key != $lastKey) $str .= ",\n";
+            if ($key != $lastKey)
+                $str .= ",\n";
         }
 
         $str .= "\n";
 
-        if($level>1) {
-            for($i=0;$i<$level-1;$i++) $str .= "\t";
+        if ($level > 1) {
+            for ($i = 0; $i < $level - 1; $i++)
+                $str .= "\t";
         }
 
         $str .= "]";
@@ -291,7 +298,7 @@ EOD;
     private function filename($filename)
     {
         $filename = str_replace(".", DIRECTORY_SEPARATOR, $filename);
-        $path = config_path().DIRECTORY_SEPARATOR.$filename.".php";
+        $path = config_path() . DIRECTORY_SEPARATOR . $filename . ".php";
         return $path;
     }
 }

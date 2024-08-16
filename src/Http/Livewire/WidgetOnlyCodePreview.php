@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-class WidgetCodePreview extends Component
+class WidgetOnlyCodePreview extends Component
 {
     use WithFileUploads;
     use \Jiny\WireTable\Http\Trait\Upload;
@@ -36,6 +36,7 @@ class WidgetCodePreview extends Component
     use \Jiny\Widgets\Http\Trait\DesignMode;
     use \Jiny\Widgets\Http\Trait\WidgetSaveJson;
 
+    // livewire의 생성자 mount => livewire 공식문서 
     public function mount()
     {
         $this->dataload();
@@ -56,6 +57,7 @@ class WidgetCodePreview extends Component
         }
 
         if (!$this->viewFile) {
+            // 화면을 가변적으로 설정하기 위함
             $this->viewFile = 'jiny-widgets::code.preview.layout';
         }
 
@@ -65,7 +67,7 @@ class WidgetCodePreview extends Component
     protected function viewListFile()
     {
         if (!$this->viewList) {
-            $this->viewList = 'jiny-widgets::code.preview.main';
+            $this->viewList = 'jiny-widgets::code.preview.onlyCode';
         }
     }
 

@@ -15,7 +15,15 @@ class JinyWidgetServiceProvider extends ServiceProvider
     {
         // 모듈: 라우트 설정
         $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+
         $this->loadViewsFrom(__DIR__ . '/../resources/views', $this->package);
+
+        // Custom Site Resources
+        $path = resource_path('widgets');
+        if(!is_dir($path)) {
+            mkdir($path,0777,true);
+        }
+        $this->loadViewsFrom($path, 'widgets');
 
         // 데이터베이스
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
@@ -36,12 +44,38 @@ class JinyWidgetServiceProvider extends ServiceProvider
 
     public function register()
     {
-        /* 라이브와이어 컴포넌트 등록 */
+        ## 1. 코어 컴포넌트
         $this->app->afterResolving(BladeCompiler::class, function () {
             Livewire::component(
                 'HotKeyEvent',
                 \Jiny\Widgets\Http\Livewire\HotKeyEvent::class
             );
+
+            ## List
+            Livewire::component(
+                'WidgetList',
+                \Jiny\Widgets\Http\Livewire\WidgetList::class
+            );
+
+            ## Hero
+            Livewire::component(
+                'WidgetHero',
+                \Jiny\Widgets\Http\Livewire\WidgetHero::class
+            );
+
+            ## Blade 파일을 읽어 출력하는 Widget
+            Livewire::component(
+                'WidgetBlade',
+                \Jiny\Widgets\Http\Livewire\WidgetBlade::class
+            );
+
+
+
+        });
+
+        ## 2. 확장 컴포넌트
+        $this->app->afterResolving(BladeCompiler::class, function () {
+
 
             ## Code
             Livewire::component(
@@ -68,11 +102,7 @@ class JinyWidgetServiceProvider extends ServiceProvider
                 \Jiny\Widgets\Http\Livewire\WidgetText::class
             );
 
-            ## Hero
-            Livewire::component(
-                'WidgetHero',
-                \Jiny\Widgets\Http\Livewire\WidgetHero::class
-            );
+
 
             Livewire::component(
                 'WidgetHero-Heading',
@@ -153,11 +183,7 @@ class JinyWidgetServiceProvider extends ServiceProvider
                 \Jiny\Widgets\Http\Livewire\WidgetTitle::class
             );
 
-            ## List
-            Livewire::component(
-                'WidgetList',
-                \Jiny\Widgets\Http\Livewire\WidgetList::class
-            );
+
 
             Livewire::component(
                 'WidgetList-Faq',

@@ -22,14 +22,14 @@
         @endif
     </p>
 </div>
-
+{{--
 <div class="mb-3">
     <label for="simpleinput" class="form-label">Blade</label>
     <textarea class="form-control" id="example-textarea" rows="5"
     wire:model.defer="forms.blade">
 
     </textarea>
-</div>
+</div> --}}
 
 
 

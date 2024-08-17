@@ -66,12 +66,12 @@ trait WidgetSaveJsonWithBlade
         file_put_contents($path.DIRECTORY_SEPARATOR.$filepath.".json", $str);
 
         // Blade 저장
-        if(isset($rows['items']['blade'])) {
-            $code = $rows['items']['blade'];
-            file_put_contents(
-                $path.DIRECTORY_SEPARATOR.$filepath.DIRECTORY_SEPARATOR."code.blade.php",
-                $code);
-        }
+        // if(isset($rows['items']['blade'])) {
+        //     $code = $rows['items']['blade'];
+        //     file_put_contents(
+        //         $path.DIRECTORY_SEPARATOR.$filepath.DIRECTORY_SEPARATOR."code.blade.php",
+        //         $code);
+        // }
 
 
 

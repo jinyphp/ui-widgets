@@ -105,8 +105,8 @@ class WidgetBlade extends Component
         $this->forms = $this->rows;
         $this->forms_old = $this->rows;
 
-        $blade = file_get_contents(View::getFinder()->find('widgets::' . $this->viewBlade));
-        $this->forms['blade'] = $blade;
+        //$blade = file_get_contents(View::getFinder()->find('widgets::' . $this->viewBlade));
+        //$this->forms['blade'] = $blade;
     }
 
 

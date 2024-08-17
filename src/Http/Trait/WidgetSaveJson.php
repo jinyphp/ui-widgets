@@ -40,12 +40,33 @@ trait WidgetSaveJson
         $str = json_encode($rows, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
 
         $path = resource_path('widgets');
-        if(!is_dir($path)) mkdir($path,0777,true);
-
         $filepath = str_replace(["/","."],DIRECTORY_SEPARATOR,$filepath);
+
+        $dir = $this->filedir($path.DIRECTORY_SEPARATOR.$filepath);
+        //dump($path.DIRECTORY_SEPARATOR.$filepath);
+        //dd($dir);
+        if(!is_dir($dir)) {
+            mkdir($dir,0777,true);
+        }
+
         file_put_contents($path.DIRECTORY_SEPARATOR.$filepath.".json", $str);
 
         return true;
     }
+
+    private function filedir($path)
+    {
+        // Find the position of the last '/'
+        $lastSlashPos = strrpos($path, DIRECTORY_SEPARATOR);
+
+        if ($lastSlashPos !== false) {
+            // Remove everything after the last '/'
+            return substr($path, 0, $lastSlashPos);
+        }
+
+        // If no '/' is found, the result should be the original path
+        return $path;
+    }
+
 
 }

@@ -7,7 +7,7 @@
     <div>
         @if(isset($rows['title']))
             <h3 class="text-3xl font-bold mb-4">
-                {!! $rows['title'] !!}
+                {{ $rows['title'] }}
             </h3>
         @endif
         @if(isset($rows['description']))

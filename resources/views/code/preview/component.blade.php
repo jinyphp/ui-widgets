@@ -8,11 +8,11 @@
     <div>
         @if(isset($rows['title']))
             <h3 class="text-3xl font-bold mb-4">
-                {!! $rows['title'] !!}
+                {{ $rows['title'] }}
             </h3>
         @endif
         @if(isset($rows['description']))
-            <p style="white-space: pre-line;" class="text-lg">{!! $rows['description'] !!}</p>
+            <p style="white-space: pre-line;" class="text-lg">{{ $rows['description'] }}</p>
         @endif
     </div>
 

@@ -51,7 +51,7 @@
                     @if(isset($rows['code']))
                         <div class="tab-pane tab-example-code fade" id="pills-{{$uid}}-code" role="tabpanel"
                             aria-labelledby="pills-{{$uid}}-code-tab">
-                            <pre><code style="font-size:0.8rem;">{!! code_view($rows['code']) !!}</code></pre>
+                            <pre style="background-color: #1e1e1e;"><code style="font-size:0.8rem;">{!! code_view($rows['code']) !!}</code></pre>
                         </div>
                     @endif
                 </div>

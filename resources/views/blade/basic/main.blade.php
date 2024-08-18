@@ -1,7 +1,6 @@
 <section class="py-lg-8 py-5">
     <div class="container">
 
-
         <div class="d-flex align-items-end mb-4">
             <div class="flex-grow-1">
                 <h2 class="text-truncate h5 mb-0">
@@ -74,7 +73,10 @@
         <!-- Tab Content -->
         <div class="tab-content" id="myTabContent-{{$uuid}}">
             <div class="tab-pane fade show active" id="home-{{$uuid}}" role="tabpanel" aria-labelledby="home-tab-{{$uuid}}">
+                @if (isset($rows['image']))
                 <img src="{{$rows['image']}}" alt="">
+                @endif
+
 
             </div>
 
@@ -85,11 +87,14 @@
                 @endif
             </div>
             <div class="tab-pane fade" id="contact-{{$uuid}}" role="tabpanel" aria-labelledby="contact-tab-{{$uuid}}">
+
+@if($viewBlade)
 <pre>
     <code>
         {{ file_get_contents(View::getFinder()->find('widgets::' . $viewBlade)) }}
     </code>
 </pre>
+@endif
             </div>
         </div>
 

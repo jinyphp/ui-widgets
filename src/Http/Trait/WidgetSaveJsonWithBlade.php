@@ -15,8 +15,8 @@ trait WidgetSaveJsonWithBlade
         $path = resource_path('widgets');
         if(!is_dir($path)) mkdir($path,0777,true);
 
-        if(file_exists($path.DIRECTORY_SEPARATOR.$this->filename.".json")) {
-            $body = file_get_contents($path.DIRECTORY_SEPARATOR.$this->filename.".json");
+        if(file_exists($path.DIRECTORY_SEPARATOR.$this->filename.DIRECTORY_SEPARATOR."data.json")) {
+            $body = file_get_contents($path.DIRECTORY_SEPARATOR.$this->filename.DIRECTORY_SEPARATOR."data.json");
             $widget = json_decode($body,true);
         }
 
@@ -41,9 +41,12 @@ trait WidgetSaveJsonWithBlade
         // 파일이 있는 경우 설정, 없는 경우 null
         $this->viewBlade = str_replace("/", ".", $this->filename);
         $this->viewBlade .= ".code";
-        if(View::exists($this->viewBlade)) {
-            $this->viewBlade = null;
+        // dd($this->viewBlade);
+        if(View::exists("widgets::".$this->viewBlade)) {
 
+
+        } else {
+            $this->viewBlade = null;
         }
 
         //dd($this->viewBlade);
@@ -52,6 +55,7 @@ trait WidgetSaveJsonWithBlade
     protected function widgetSave($rows, $filepath)
     {
         $str = json_encode($rows, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
+        $str = str_replace('\/', '/', $str);
 
         $path = resource_path('widgets');
         $filepath = str_replace(["/","."],DIRECTORY_SEPARATOR,$filepath);
@@ -63,7 +67,7 @@ trait WidgetSaveJsonWithBlade
             mkdir($dir,0777,true);
         }
 
-        file_put_contents($path.DIRECTORY_SEPARATOR.$filepath.".json", $str);
+        file_put_contents($path.DIRECTORY_SEPARATOR.$filepath.DIRECTORY_SEPARATOR."data.json", $str);
 
         // Blade 저장
         // if(isset($rows['items']['blade'])) {

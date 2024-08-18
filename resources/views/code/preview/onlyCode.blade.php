@@ -16,18 +16,16 @@
     </div>
 
     @if(isset($rows['code']))
-        <div class="bg-gray-300 p-3 mt-4">
+        <div class="py-3 mt-2">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="tab-content p-3" id="pills-tabTwoContent">
+                    <div class="tab-content" id="pills-tabTwoContent">
 
-                        <pre
-                            class="bg-gray-300 m-0"><code class="language-markup bg-gray-300 ">{!! code_view($rows['code']) !!}</code></pre>
+                        <pre><code style="font-size:0.8rem;">{!! code_view($rows['code']) !!}</code></pre>
 
                     </div>
                 </div>
             </div>
         </div>
     @endif
-
 </x-www-preview>

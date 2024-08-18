@@ -16,8 +16,9 @@
         @endif
     </div>
 
-    <div class="bg-gray-300 p-3 mt-4">
-        <div class="flex justify-content-end">
+    <div class="px-2">
+        <div class="flex justify-content-end mb-2 pr-2">
+            
             <ul class="nav nav-pills nav-custom-pill" id="pills-tabTwo" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a class="nav-link active" id="pills-{{$uid}}-preview-tab" data-bs-toggle="pill"
@@ -26,7 +27,7 @@
                         <span class="">Preview</span>
                     </a>
                 </li>
-                <li class="nav-item ml-3" role="presentation">
+                <li class="nav-item" role="presentation">
                     <a class="nav-link" id="pills-{{$uid}}-code-tab" data-bs-toggle="pill" href="#pills-{{$uid}}-code"
                         role="tab" aria-controls="pills-{{$uid}}-code" aria-selected="false" tabindex="-1"
                         >
@@ -34,14 +35,15 @@
                     </a>
                 </li>
             </ul>
+            
         </div>
 
 
         <div class="row  mt-2">
-            <div class="col-md-12 bg-gray-300">
-                <div class="tab-content p-3" id="pills-tabTwoContent">
+            <div class="col-md-12">
+                <div class="tab-content border rounded-lg" id="pills-tabTwoContent">
                     @if(isset($rows['code']))
-                        <div class="tab-pane tab-example-preview fade active show" id="pills-{{$uid}}-preview"
+                        <div class="tab-pane tab-example-preview mx-6 my-4 fade active show" id="pills-{{$uid}}-preview"
                             role="tabpanel" aria-labelledby="pills-{{$uid}}-preview-tab">
                             {!! $rows['code'] !!}
                         </div>
@@ -49,7 +51,7 @@
                     @if(isset($rows['code']))
                         <div class="tab-pane tab-example-code fade" id="pills-{{$uid}}-code" role="tabpanel"
                             aria-labelledby="pills-{{$uid}}-code-tab">
-                            <pre style="backgroun-color:#123412"><code class="language-markup bg-gray-300 ">{!! code_view($rows['code']) !!}</code></pre>
+                            <pre><code style="font-size:0.8rem;">{!! code_view($rows['code']) !!}</code></pre>
                         </div>
                     @endif
                 </div>

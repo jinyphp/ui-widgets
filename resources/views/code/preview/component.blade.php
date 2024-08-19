@@ -40,15 +40,17 @@
                         </button>
                     </li>
                 </ul>
-                <button class="bg-gray-100 w-12 mr-1 rounded-lg"></button>
+                
             </div>
         </div>
-
         <div class="row mt-2">
             <div class="col-md-12">
                 <div class="tab-content border rounded-lg" id="pills-tabTwoContent">
+                    <div class="flex justify-end pr-2">
+                    <button class="bg-white mt-2 w-12 h-6" ><img class="h-6" src="/assets/img/util/copy.svg" /></button>
+                    </div>
                     @if(isset($rows['code']))
-                        <div class="tab-pane tab-example-preview mx-6 my-4 fade active show" id="pills-{{$uid}}-preview"
+                        <div class="tab-pane tab-example-preview mx-6 mb-4 fade active show" id="pills-{{$uid}}-preview"
                             role="tabpanel" aria-labelledby="pills-{{$uid}}-preview-tab">
                             {!! $rows['code'] !!}
                         </div>

@@ -34,8 +34,8 @@ class WidgetBlade extends Component
     public $forms = [];
     public $edit_id;
 
-
     public $codeEditable = false;
+    public $sourceCodePath;
 
     use \Jiny\Widgets\Http\Trait\DesignMode;
     use \Jiny\Widgets\Http\Trait\WidgetSaveJsonWithBlade;
@@ -116,10 +116,13 @@ class WidgetBlade extends Component
         $this->forms['updated_at'] = date("Y-m-d H:i:s");
 
         // 3. 파일 업로드 체크 Trait
-        $this->upload_path = "/";
+        $this->upload_path = "/"; //"/upload";
+        $this->upload_move = "/images/widgets/".$this->filename; // 슬롯 안쪽으로 이동
         $this->fileUpload($this->forms, $this->upload_path);
+        // dd($this->forms);
 
-        // 이미지삭제
+        // 파일을 재등록 한 경우
+        // 이전 파일은 삭제 합니다.
         $this->deleteUploadFiles($this->forms, $this->forms_old);
 
         $this->rows = $this->forms;
@@ -143,22 +146,44 @@ class WidgetBlade extends Component
 
     protected function deleteUploadFiles($form, $old = null)
     {
-        $path = storage_path('app');
+        if($this->upload_move) {
+            // 이동을 한경우
+            $path = resource_path("/www");
+            $path .= DIRECTORY_SEPARATOR.www_slot();
+            //$path .= DIRECTORY_SEPARATOR.ltrim($this->upload_move,'/');
+            $path = str_replace('\/', DIRECTORY_SEPARATOR, $path);
+
+        } else  if($this->upload_path) {
+            $path = storage_path('app');
+            $path .= DIRECTORY_SEPARATOR.ltrim($this->upload_path,'/');
+        }
+
+        //dump($path);
+
+        // 컬럼명이 다음과 같은 경우
         $type_name = ["image", "img", "images", "upload"];
+        //dump($type_name);
 
         foreach ($form as $key => $item) {
+            // 컬럼 검사
             if (in_array($key, $type_name)) {
-
+                //dump($key);
+                //dump($old);
+                //dump($form);
+                // 파일이 수정되어 있나요?
                 // 수정 케이스
                 if ($old && isset($old[$key]) && isset($form[$key])) {
                     if ($old[$key] != $form[$key]) {
-                        $filepath = $path . "/" . $old[$key];
+                        //dump("deleting...");
+                        $filepath = $path . $old[$key];
+                        //dump($filepath);
                         if (file_exists($filepath)) {
+                            //dd($filepath);
                             unlink($filepath);
                         }
                     }
                 }
-                // 삭제 케이스
+                // 삭제하는 경우
                 else {
                     $filepath = $path . "/" . $item;
                     if (file_exists($filepath)) {
@@ -167,6 +192,8 @@ class WidgetBlade extends Component
                 }
             }
         }
+
+        //dd("dsfa");
     }
 
 
@@ -192,7 +219,23 @@ class WidgetBlade extends Component
     {
         $this->codeEditable = true;
 
-        $this->blade = file_get_contents(View::getFinder()->find('widgets::' . $this->viewBlade));
+        $path = null;
+        if($this->viewBlade) {
+            if(View::exists("widgets::".$this->viewBlade)) {
+                $path = View::getFinder()->find('widgets::' . $this->viewBlade);
+            }
+        }
+        //dd($path);
+
+        if($path) {
+            if(file_exists($path)) {
+                $this->blade = file_get_contents($path);
+            } else {
+                $this->blade = "";
+            }
+        }
+
+
 
     }
 
@@ -209,6 +252,7 @@ class WidgetBlade extends Component
             mkdir($dir,0777,true);
         }
 
+        //dd($this->blade);
         file_put_contents(
             $path.DIRECTORY_SEPARATOR.$filepath.DIRECTORY_SEPARATOR."code.blade.php",
             $this->blade);

@@ -3,47 +3,54 @@
     // 소수점(.)을 빈 문자열로 대체하여 제거
     $uid = str_replace('.', '', $uid);
 @endphp
-<x-www-preview>
 
+<x-www-preview>
     <div>
         @if(isset($rows['title']))
             <h3 class="text-3xl font-bold mb-4">
-                {!! $rows['title'] !!}
+                {{ $rows['title'] }}
             </h3>
         @endif
         @if(isset($rows['description']))
-            <p style="white-space: pre-line;" class="text-lg">{!! $rows['description'] !!}</p>
+            <p style="white-space: pre-line;" class="text-lg">{{ $rows['description'] }}</p>
         @endif
     </div>
 
     <div class="px-2">
-        <div class="flex justify-content-end mb-2 pr-2">
-            
-            <ul class="nav nav-pills nav-custom-pill" id="pills-tabTwo" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="pills-{{$uid}}-preview-tab" data-bs-toggle="pill"
-                        href="#pills-{{$uid}}-preview" role="tab" aria-controls="pills-{{$uid}}-preview"
-                        aria-selected="true">
-                        <span class="">Preview</span>
-                    </a>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="pills-{{$uid}}-code-tab" data-bs-toggle="pill" href="#pills-{{$uid}}-code"
-                        role="tab" aria-controls="pills-{{$uid}}-code" aria-selected="false" tabindex="-1"
-                        >
-                        <span class="">Code</span>
-                    </a>
-                </li>
-            </ul>
-            
+        <div class="d-flex align-items-end mb-2">
+            <div class="flex-grow-1"></div>
+
+            <div class="d-flex gap-2">
+                <!-- Tab Navigation as Buttons -->
+                <ul class="nav nav-tabs" id="myTab-{{$uid}}" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pills-{{$uid}}-preview-tab" data-bs-toggle="pill"
+                            href="#pills-{{$uid}}-preview" type="button"
+                            role="tab" aria-controls="pills-{{$uid}}-preview"
+                            aria-selected="true">
+                            Preview
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-{{$uid}}-code-tab" data-bs-toggle="pill"
+                            href="#pills-{{$uid}}-code" type="button"
+                            role="tab" aria-controls="pills-{{$uid}}-code"
+                            aria-selected="false">
+                            Code
+                        </button>
+                    </li>
+                </ul>
+                
+            </div>
         </div>
-
-
-        <div class="row  mt-2">
+        <div class="row mt-2">
             <div class="col-md-12">
                 <div class="tab-content border rounded-lg" id="pills-tabTwoContent">
+                    <div class="flex justify-end pr-2">
+                    <button class="bg-white mt-2 w-12 h-6" ><img class="h-6" src="/assets/img/util/copy.svg" /></button>
+                    </div>
                     @if(isset($rows['code']))
-                        <div class="tab-pane tab-example-preview mx-6 my-4 fade active show" id="pills-{{$uid}}-preview"
+                        <div class="tab-pane tab-example-preview mx-6 mb-4 fade active show" id="pills-{{$uid}}-preview"
                             role="tabpanel" aria-labelledby="pills-{{$uid}}-preview-tab">
                             {!! $rows['code'] !!}
                         </div>
@@ -51,7 +58,7 @@
                     @if(isset($rows['code']))
                         <div class="tab-pane tab-example-code fade" id="pills-{{$uid}}-code" role="tabpanel"
                             aria-labelledby="pills-{{$uid}}-code-tab">
-                            <pre><code style="font-size:0.8rem;">{!! code_view($rows['code']) !!}</code></pre>
+                            <pre style="background-color: #1e1e1e;"><code style="font-size:0.8rem;">{!! code_view($rows['code']) !!}</code></pre>
                         </div>
                     @endif
                 </div>

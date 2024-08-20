@@ -7,7 +7,7 @@
     <div>
         @if(isset($rows['title']))
             <h3 class="text-3xl font-bold mb-4">
-                {!! $rows['title'] !!}
+                {{ $rows['title'] }}
             </h3>
         @endif
         @if(isset($rows['description']))
@@ -21,7 +21,7 @@
                 <div class="col-md-12">
                     <div class="tab-content" id="pills-tabTwoContent">
 
-                        <pre><code style="font-size:0.8rem;">{!! code_view($rows['code']) !!}</code></pre>
+                        <pre style="background-color: #1e1e1e;"><code style="font-size:0.8rem;">{!! code_view($rows['code']) !!}</code></pre>
 
                     </div>
                 </div>

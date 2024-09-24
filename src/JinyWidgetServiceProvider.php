@@ -102,6 +102,10 @@ class JinyWidgetServiceProvider extends ServiceProvider
                 \Jiny\Widgets\Http\Livewire\WidgetText::class
             );
 
+            Livewire::component(
+                'WidgetTag',
+                \Jiny\Widgets\Http\Livewire\WidgetTag::class
+            );
 
 
             Livewire::component(

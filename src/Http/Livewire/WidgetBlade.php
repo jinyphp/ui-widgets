@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\View;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-class WidgetBlade extends Component
+use Jiny\Widgets\Http\Livewire\Widget;
+class WidgetBlade extends Widget
 {
     use WithFileUploads;
     use \Jiny\WireTable\Http\Trait\Upload;
@@ -16,7 +17,8 @@ class WidgetBlade extends Component
     public $uuid;
 
     public $widget = []; // 위젯정보
-    public $setup = false;
+    public $widget_id; // page Widget에서 전달되는 순번
+
 
     public $upload_path;
 
@@ -46,7 +48,15 @@ class WidgetBlade extends Component
         // 소수점(.)을 빈 문자열로 대체하여 제거
         $this->uuid = str_replace('.', '', $uuid);
 
+        if(!$this->filename) {
+            if(isset($this->widget['route']) && isset($this->widget['path'])) {
+                $this->filename = str_replace('/',DIRECTORY_SEPARATOR,$this->widget['route']);
+                $this->filename .= DIRECTORY_SEPARATOR.$this->widget['path'];
+            }
+        }
+        // json 파일에서 위젯 데이터 읽기
         $this->dataload();
+
 
         $this->viewListFile();
         $this->viewFormFile();
@@ -95,7 +105,8 @@ class WidgetBlade extends Component
         'popupFormCreate',
         'edit',
         'popupEdit',
-        'popupCreate'
+        'popupCreate',
+        'widget-layout-setting' => "WidgetSetLayout"
     ];
 
     public $forms_old;
@@ -197,11 +208,6 @@ class WidgetBlade extends Component
     }
 
 
-    public function setting()
-    {
-        $this->popupForm = true;
-        $this->setup = true;
-    }
 
     public function download()
     {

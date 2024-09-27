@@ -8,12 +8,15 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
-class WidgetList extends Component
+use Jiny\Widgets\Http\Livewire\Widget;
+class WidgetList extends Widget
 {
     use WithFileUploads;
     use \Jiny\WireTable\Http\Trait\Upload;
 
     public $widget=[]; // 위젯정보
+    public $widget_id; // page Widget에서 전달되는 순번
+
     public $upload_path;
 
     public $viewFile;
@@ -35,7 +38,15 @@ class WidgetList extends Component
 
     public function mount()
     {
+        if(!$this->filename) {
+            if(isset($this->widget['route']) && isset($this->widget['path'])) {
+                $this->filename = str_replace('/',DIRECTORY_SEPARATOR,$this->widget['route']);
+                $this->filename .= DIRECTORY_SEPARATOR.$this->widget['path'];
+            }
+        }
+        // json 파일에서 위젯 데이터 읽기
         $this->dataload();
+
         $this->viewFormFile();
         $this->viewListFile();
 
@@ -81,7 +92,8 @@ class WidgetList extends Component
 
     protected $listeners = [
         'create','popupFormCreate',
-        'edit','popupEdit','popupCreate'
+        'edit','popupEdit','popupCreate',
+        'widget-layout-setting' => "WidgetSetLayout"
     ];
 
     public function create($value=null)
@@ -214,15 +226,8 @@ class WidgetList extends Component
         }
     }
 
-    /**
-     * 디자인 모드 활성화
-     */
-    public $setup = false;
-    public function setting()
-    {
-        $this->popupForm = true;
-        $this->setup = true;
-    }
+
+
 
 
 

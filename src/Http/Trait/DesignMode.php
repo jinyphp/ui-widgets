@@ -16,4 +16,18 @@ trait DesignMode
         }
     }
 
+    /**
+     * layout 모드
+     * setActionsRule에서 처리됨
+     */
+    // #[On('layout-mode')]
+    // public function layoutMode($mode=null)
+    // {
+    //     if($this->design) {
+    //         $this->design = false;
+    //     } else {
+    //         $this->design = "layout";
+    //     }
+    // }
+
 }

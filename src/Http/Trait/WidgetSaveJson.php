@@ -12,8 +12,10 @@ trait WidgetSaveJson
         $path = resource_path('widgets');
         if(!is_dir($path)) mkdir($path,0777,true);
 
-        if(file_exists($path.DIRECTORY_SEPARATOR.$this->filename.".json")) {
-            $body = file_get_contents($path.DIRECTORY_SEPARATOR.$this->filename.".json");
+        $filepath = str_replace('.json',"",$this->filename);
+
+        if(file_exists($path.DIRECTORY_SEPARATOR.$filepath.".json")) {
+            $body = file_get_contents($path.DIRECTORY_SEPARATOR.$filepath.".json");
             $widget = json_decode($body,true);
         }
 
@@ -40,6 +42,7 @@ trait WidgetSaveJson
         $str = json_encode($rows, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
 
         $path = resource_path('widgets');
+        $filepath = str_replace('.json',"",$filepath);
         $filepath = str_replace(["/","."],DIRECTORY_SEPARATOR,$filepath);
 
         $dir = $this->filedir($path.DIRECTORY_SEPARATOR.$filepath);

@@ -4,30 +4,35 @@
         document.addEventListener('keydown', function(event){
             // event.shiftKey
             if(event.altKey) {
-                /* widget */
+
+                /* widget toggle */
                 if(event.key === 't' || event.key === 'T'){
                     console.log("design mode");
                     $wire.dispatch('design-mode');
-                    //window.dispatchEvent(new CustomEvent('design-mode2')); // Custom frontend event
                 }
 
-                /* layout */
+                /* layout toggle */
                 if(event.key === 'l' || event.key === 'L'){
                     console.log("Layout mode");
                     $wire.dispatch('layout-mode');
-                    //window.dispatchEvent(new CustomEvent('design-mode2')); // Custom frontend event
                 }
 
-                /* menu */
+                /* menu toggle */
                 if(event.key === 'm' || event.key === 'M'){
                     console.log("menu edit");
                     $wire.dispatch('menu-mode');
                 }
 
-                /* action rules */
+                /* action rules toggle */
                 if(event.key === 'k' || event.key === 'K'){
                     console.log("action rules");
                     $wire.dispatch('action-mode');
+                }
+
+                /* Page Edit toggle */
+                if(event.key === 'p' || event.key === 'P'){
+                    console.log("page edit");
+                    $wire.dispatch('page-mode');
                 }
 
             }

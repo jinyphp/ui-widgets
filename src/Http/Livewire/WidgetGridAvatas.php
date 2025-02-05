@@ -13,6 +13,7 @@ class WidgetGridAvatas extends WidgetList
     public function mount()
     {
         parent::mount();
+        $this->upload_path = "/upload";
     }
 
     protected function viewListFile()

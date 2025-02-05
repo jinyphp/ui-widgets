@@ -17,6 +17,10 @@ class WidgetListFaq extends WidgetList
         parent::mount();
     }
 
+    /**
+     * override
+     * 부모 클래스의 메서드를 재정의
+     */
     protected function viewListFile()
     {
         if(!$this->viewList) {

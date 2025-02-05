@@ -2,7 +2,7 @@
     <div class="col-lg-6 order-first order-lg-last">
         @if(isset($rows['image']))
         <img class="img-fluid rounded mb-5 mb-lg-0"
-            src="/{{$rows['image']}}"
+            src="{{$rows['image']}}"
             alt="..." />
         @else
         <img class="img-fluid rounded mb-5 mb-lg-0"

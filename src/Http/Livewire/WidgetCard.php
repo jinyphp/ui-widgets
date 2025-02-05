@@ -17,6 +17,12 @@ class WidgetCard extends WidgetHero
 
     protected function viewListFile()
     {
+        if(isset($this->widget['view']['list'])) {
+            return $this->widget['view']['list'];
+        }
+
+        return 'jiny-widgets::cards.basic.main';
+
         if(!$this->viewList) {
             $this->viewList = 'jiny-widgets::cards.basic.main';
         }
@@ -24,6 +30,12 @@ class WidgetCard extends WidgetHero
 
     protected function viewFormFile()
     {
+        if(isset($this->widget['view']['form'])) {
+            return $this->widget['view']['form'];
+        }
+
+        return "jiny-widgets::cards.basic.form";
+
         if(!$this->viewForm) {
             $this->viewForm = "jiny-widgets::cards.basic.form";
         }

@@ -17,6 +17,8 @@ class WidgetHeroButtons extends WidgetList
 
     protected function viewListFile()
     {
+        return 'jiny-widgets::hero.buttons.list';
+
         if(!$this->viewList) {
             $this->viewList = 'jiny-widgets::hero.buttons.list';
         }
@@ -24,6 +26,8 @@ class WidgetHeroButtons extends WidgetList
 
     protected function viewFormFile()
     {
+        return "jiny-widgets::hero.buttons.form";
+
         if(!$this->viewForm) {
             $this->viewForm = "jiny-widgets::hero.buttons.form";
         }

@@ -1,6 +1,7 @@
 <div style="position: relative;">
+
     {{-- 위젯 설정버튼 --}}
-    @if($design)
+    @if($design && isAdmin())
     <div style="position: absolute;top:4px;right:4px;z-index:50;">
         <span class="text-primary" wire:click="create">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
@@ -19,7 +20,6 @@
     @endif
 
     {{-- 목록화면 --}}
-
     @includeIf($viewList)
 
 
@@ -93,6 +93,7 @@
     </x-wire-dialog-modal>
     @endif
 
+    {{-- 위젯 선택창 --}}
     @if(isset($widget_select) && $widget_select)
     <x-wire-dialog-modal wire:model="widget_select" maxWidth="5xl">
         <x-slot name="title">

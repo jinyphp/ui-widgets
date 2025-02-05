@@ -49,8 +49,8 @@ class WidgetHero extends Widget
         // json 파일에서 위젯 데이터 읽기
         $this->dataload();
 
-        $this->viewListFile();
-        $this->viewFormFile();
+        $this->viewList = $this->viewListFile();
+        $this->viewForm = $this->viewFormFile();
 
         // 데이터 파일명과 동일한 구조의 url 경로로 임시설정
         $this->upload_path = "/".str_replace(".", "/", $this->filename);
@@ -73,16 +73,19 @@ class WidgetHero extends Widget
 
     protected function viewListFile()
     {
-        if(!$this->viewList) {
-            $this->viewList = 'jiny-widgets::hero.basic.main';
-        }
+        // if(!$this->viewList) {
+        //     $this->viewList = 'jiny-widgets::hero.basic.main';
+        // }
+
+        return 'jiny-widgets::hero.basic.main';
     }
 
     protected function viewFormFile()
     {
-        if(!$this->viewForm) {
-            $this->viewForm = "jiny-widgets::hero.basic.form";
-        }
+        return "jiny-widgets::hero.basic.form";
+        // if(!$this->viewForm) {
+        //     $this->viewForm = "jiny-widgets::hero.basic.form";
+        // }
     }
 
     protected $listeners = [

@@ -18,7 +18,11 @@
                 alt="..." />
             @endif
             <h5 class="fw-bolder" wire:click="edit({{$i}})">{{$item['name']}}</h5>
-            <div class="fst-italic text-muted">{{$item['position']}}</div>
+            @if(isset($item['position']))
+            <div class="fst-italic text-muted">
+                {{$item['position']}}
+            </div>
+            @endif
         </div>
     </div>
     @endforeach

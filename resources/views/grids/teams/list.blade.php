@@ -3,7 +3,7 @@
         width: 150px;
         height: 150px;
         overflow: hidden;
-        border-radius: 50%;
+        /*border-radius: 50%;*/
         margin: 0 auto;
     }
     .avatar-image {

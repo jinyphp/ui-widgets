@@ -18,13 +18,15 @@ class Widget extends Component
     }
 
     /**
+     * 중재자 패턴 :
      * SiteWidgetLoop 에서 호출되는 이벤트
      * 사이트 레이아웃 및 정보 수정
      */
     #[On('widget-layout-setting')]
     public function WidgetSetLayout($widget_id)
     {
-        if($this->widget['key'] == $widget_id) {
+        if(isset($this->widget['key'])
+            && $this->widget['key'] == $widget_id) {
             $this->setting();
         }
     }
@@ -37,11 +39,6 @@ class Widget extends Component
         $this->mode = "setting";
         $this->popupForm = true;
         $this->setup = true;
-
-
     }
-
-
-
 
 }

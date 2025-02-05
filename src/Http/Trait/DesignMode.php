@@ -11,8 +11,10 @@ trait DesignMode
     {
         if($this->design) {
             $this->design = false;
+            //session(['design' => false]); // 세션에 design 값을 false로 설정
         } else {
             $this->design = true;
+            //session(['design' => true]); // 세션에 design 값을 true로 설정
         }
     }
 

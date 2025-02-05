@@ -58,16 +58,14 @@ class WidgetList extends Widget
     {
         if(!$this->filename) {
             return <<<EOD
-            <div>Widget 데이터 파일명이 없습니다.</div>
+            <div>Widget 데이터 파일명이 지정되어 있지 않습니다.</div>
             EOD;
         }
 
+        // 레이아웃 기본값
         if(!$this->viewFile) {
-            $this->viewFile = 'jiny-widgets::widgets.layout_list';
+            $this->viewFile = 'jiny-widgets::layouts.list.layout';
         }
-
-        // 기본값
-        //$viewFile = 'jiny-widgets::widgets.layout';
         return view($this->viewFile);
     }
 

@@ -193,6 +193,9 @@ class JinyWidgetServiceProvider extends ServiceProvider
                 'WidgetList-Faq',
                 \Jiny\Widgets\Http\Livewire\WidgetListFaq::class
             );
+            Livewire::component('widget-list-Faq',
+                \Jiny\Widgets\Http\Livewire\WidgetListFaq::class
+            );
 
             Livewire::component(
                 'WidgetNote',
